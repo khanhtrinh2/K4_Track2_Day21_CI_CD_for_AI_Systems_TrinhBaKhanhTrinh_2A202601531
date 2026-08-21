@@ -68,7 +68,7 @@ Cần nêu được:
 
 | Khó khăn | Nguyên nhân | Cách giải quyết |
 |---|---|---|
-| `ModuleNotFoundError: pkg_resources` khi chạy `train.py` | `setuptools` bản mới trong `.venv` đã loại bỏ `pkg_resources` mà `mlflow` vẫn cần | Downgrade `setuptools<81` |
+| Service `income-api` trên VM crash liên tục, không pass health check khi Release job chạy | VM cài `scikit-learn` bản mới nhất (1.7.2) qua `pip3 install`, không khớp bản `1.4.2` dùng để train model, khiến `joblib.load` không đọc được file pickle | Cài đúng phiên bản `scikit-learn==1.4.2` trên VM để khớp với `requirements.txt` dùng khi train |
 | MLflow UI báo "No runs logged" dù train đã chạy xong | Train chạy ở Git Bash, `mlflow ui` mở ở PowerShell khác — biến môi trường không chia sẻ giữa hai shell | Chạy toàn bộ lệnh trong cùng một terminal, set lại biến rồi chạy lại |
 | Lỗi `artifact scheme 'sqlite' is invalid` khi log model | Experiment `Default` được tạo với `artifact_location` mặc định dùng scheme proxy, không hợp với việc gọi script trực tiếp (không qua server) | Sửa `artifact_location` trong `mlflow.db` trỏ về thư mục cục bộ |
 
