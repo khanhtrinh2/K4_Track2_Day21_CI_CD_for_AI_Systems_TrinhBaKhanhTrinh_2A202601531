@@ -49,3 +49,9 @@ Tập dữ liệu Adult mất cân bằng: chỉ 24,8% mẫu thuộc lớp thu n
 | Bước 3 (thêm `train_batch2`, 44.722 mẫu) | 0.7354 | 0.8820 |
 
 **Nhận xét:** f1_score tăng nhẹ (+0,0205) và accuracy cũng tăng (+0,008) khi gấp đôi dữ liệu huấn luyện. Khác với dự đoán rằng dữ liệu cùng phân phối sẽ không mang thêm thông tin, kết quả thực tế cho thấy 22.361 mẫu đầu chưa đủ để mô hình học bão hòa hết đặc trưng của lớp thiểu số (thu nhập cao) — gấp đôi kích thước mẫu giúp mô hình ước lượng ranh giới quyết định ổn định hơn, đặc biệt với các mẫu ở lớp thiểu số vốn ít đại diện hơn trong tập nhỏ. Mức tăng nhỏ (không đột biến) cũng phù hợp với kỳ vọng: hai nửa dữ liệu cùng nguồn nên phần lớn thông tin đã được học từ nửa đầu, chỉ còn cải thiện biên độ nhỏ chứ không tạo đột phá.
+
+---
+
+## 5. Phần Bonus Đã Thực Hiện
+
+- [x] Bonus 1 - Tracking MLflow từ xa với DagsHub: kết nối repo GitHub với DagsHub, cấu hình `MLFLOW_TRACKING_URI`/`MLFLOW_TRACKING_USERNAME`/`MLFLOW_TRACKING_PASSWORD` (token) làm GitHub Secrets, job Train trong `cicd.yml` ghi log trực tiếp lên DagsHub MLflow server thay vì SQLite cục bộ.
